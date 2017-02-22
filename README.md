@@ -1,2 +1,3 @@
 # JKImagePickerController
 一个简单的照片选择器
+最近没有多少事情，闲来无事随便写了一个照片选择器
