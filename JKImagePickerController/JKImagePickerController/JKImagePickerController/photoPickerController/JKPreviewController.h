@@ -13,14 +13,39 @@
 
 @interface JKPreviewController : UIViewController
 
+/**
+ 现在选中的是第几个图片
+ */
 @property (assign, nonatomic) NSInteger selectNumber;
 
+/**
+ asset数组
+ */
 @property (strong, nonatomic) NSArray *assets;
 
+/**
+ image数组
+ */
+@property (strong, nonatomic) NSArray <UIImage *>*images;
+
+/**
+ 相册照片集合
+ */
 @property (strong, nonatomic) PHFetchResult *result;
 
+/**
+ 最大可选照片数
+ */
 @property (assign, nonatomic) int maxSelectCount;
 
+/**
+ 对图片进行剪切的类型（默认不剪切）
+ */
+@property (assign, nonatomic) NSInteger cutType;
+
+/**
+ 返回要才建的照片及要裁剪区域的相对位置
+ */
 @property (copy, nonatomic) void (^returnSelectImage)(PHAsset *, CGRect);
 
 @end

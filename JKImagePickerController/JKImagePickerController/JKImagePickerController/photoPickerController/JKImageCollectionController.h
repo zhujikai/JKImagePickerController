@@ -18,6 +18,11 @@
 
 @property (assign, nonatomic) int maxSelectCount;
 
+/**
+ 对图片进行剪切的类型（默认不剪切）
+ */
+@property (assign, nonatomic) NSInteger cutType;
+
 @property (strong, nonatomic) PHFetchResult *smartAlbum;
 
 @property (copy, nonatomic) void (^returnSelectImageAsset)(NSArray<PHAsset *>*);

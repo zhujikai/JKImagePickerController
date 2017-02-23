@@ -23,6 +23,7 @@
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     
     [self configCollection];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,6 +36,9 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
+/**
+ 设置界面
+ */
 - (void)configNav {
     
     UIButton *backBtn = ({
@@ -49,6 +53,7 @@
     if (self.maxSelectCount > 1) {
         
     } else {
+        //当只有一张图片时的界面
         self.navigationController.navigationBar.hidden = YES;
         
         UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,6 +74,9 @@
     }
 }
 
+/**
+ 设置collectionView
+ */
 - (void)configCollection {
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -82,10 +90,9 @@
     
     self.previewCollectionView.delegate = self;
     self.previewCollectionView.dataSource = self;
-    self.previewCollectionView.backgroundColor = [UIColor whiteColor];
-    if (self.result.count > self.selectNumber) {
-        [self.previewCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectNumber inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-    } else if (self.assets.count > self.selectNumber) {
+    self.previewCollectionView.backgroundColor = [UIColor blackColor];
+    //设置当前选中的图片
+    if (self.result.count > self.selectNumber || self.assets.count > self.selectNumber || self.images.count > self.selectNumber) {
         [self.previewCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectNumber inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     }
     
@@ -101,11 +108,24 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+/**
+ 当只有一张图片时点击完成时调用
+ */
 - (void)touchSelectFinish {
     if (_returnSelectImage) {
-        JKPreviewCell *cell = (JKPreviewCell *)[self.previewCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        CGRect rect = [cell selectCutImageFinish];
+        
+        CGRect rect;
+        
+        if (self.cutType == 1) {
+            JKPreviewCell *cell = (JKPreviewCell *)[self.previewCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            rect = [cell selectCutImageFinish];
+            
+        } else {
+            rect = CGRectMake(0, 0, 0, 0);
+        }
+        
         _returnSelectImage(self.assets.firstObject,rect);
+        
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -114,14 +134,17 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (self.result) {
         return self.result.count;
+    } else if (self.assets) {
+        return self.assets.count;
     }
-    return self.assets.count;
+    return self.images.count;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     JKPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JKPreviewCell" forIndexPath:indexPath];
     
+    //点击事件
     if (!cell.returnTap) {
         cell.returnTap = ^() {
             if (self.maxSelectCount > 1) {
@@ -135,6 +158,7 @@
         };
     }
     
+    //滑动开始与结束（isDid YES&NO）
     if (!cell.returnDidScroll) {
         cell.returnDidScroll = ^(BOOL isDid) {
             if (isDid) {
@@ -145,18 +169,27 @@
         };
     }
     
+    //是否是多张图片
     if (self.maxSelectCount > 1) {
         cell.isMultiple = YES;
     } else {
         cell.isMultiple = NO;
     }
+    //裁剪类型
+    cell.cutType = self.cutType;
+    
+    //给cell传图片或者PHAsset
     if (self.result) {
         if (self.result.count > indexPath.row) {
             cell.asset = self.result[indexPath.row];
         }
-    } else {
+    } else if (self.assets) {
         if (self.assets.count > indexPath.row) {
             cell.asset = self.assets[indexPath.row];
+        }
+    } else {
+        if (self.images.count > indexPath.row) {
+            cell.image = self.images[indexPath.row];
         }
     }
     cell.clipsToBounds = YES;
@@ -164,6 +197,11 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.images) {
+        return CGSizeMake(PHONE_WIDTH, PHONE_HEIGHT);
+    }
+    
+    //过滤video或者audio
     PHAsset *asset;
     if (self.result) {
         if (self.result.count > indexPath.row) {
@@ -183,6 +221,7 @@
 - (void)dealloc {
     self.assets = nil;
     self.result = nil;
+    self.images = nil;
     self.previewCollectionView = nil;
 }
 

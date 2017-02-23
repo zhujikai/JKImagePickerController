@@ -26,6 +26,7 @@
     JKImageCollectionController *imageCon = [[JKImageCollectionController alloc] init];
     imageCon.navTitle = @"所有照片";
     imageCon.maxSelectCount = self.maxSelectCount;
+    imageCon.cutType = self.cutType;
     imageCon.returnSelectImageAsset = ^(NSArray<PHAsset *>* assets) {
         if (self.returnSelectImageAsset) {
             self.returnSelectImageAsset(assets);
@@ -136,6 +137,7 @@
     imageCon.smartAlbum = [JKImageManagement getFetchResultWithAssetCollection:assetCollection];
     imageCon.navTitle = [JKImageManagement transformAblumTitle:assetCollection.localizedTitle];
     imageCon.maxSelectCount = self.maxSelectCount;
+    imageCon.cutType = self.cutType;
     
     imageCon.returnSelectImageAsset = ^(NSArray<PHAsset *>* assets) {
         if (self.returnSelectImageAsset) {

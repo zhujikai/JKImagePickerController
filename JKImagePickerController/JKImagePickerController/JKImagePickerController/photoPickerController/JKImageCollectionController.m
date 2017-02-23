@@ -213,10 +213,14 @@
 - (void)touchSelectPhotoFinish {
     if (self.returnSelectImageAsset) {
         NSMutableArray *array = [NSMutableArray array];
-        [self.selectTypeSet enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
+        NSArray *keyArr = [self.selectTypeSet.allObjects sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            return [obj1 compare:obj2];
+        }];
+        [keyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [array addObject:self.result[[obj integerValue]]];
         }];
         self.returnSelectImageAsset(array);
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -339,6 +343,7 @@
         }
         
         preview.maxSelectCount = self.maxSelectCount;
+        preview.cutType = self.cutType;
         preview.returnSelectImage = ^(PHAsset *asset, CGRect rect) {
             if (self.returnSelectImage) {
                 self.returnSelectImage(asset,rect);

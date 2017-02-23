@@ -37,6 +37,8 @@
 		1078167E1E4D6E7B0045CBB9 /* JKImageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1078167D1E4D6E7B0045CBB9 /* JKImageListCell.m */; };
 		107816811E4D9BB20045CBB9 /* JKImageManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816801E4D9BB20045CBB9 /* JKImageManagement.m */; };
 		107816841E4DA27A0045CBB9 /* JKPhotoImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816831E4DA27A0045CBB9 /* JKPhotoImageCell.m */; };
+		10872A9D1E5E7C4F005A8849 /* JKImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10872A9B1E5E7C4F005A8849 /* JKImageCell.m */; };
+		10872A9E1E5E7C4F005A8849 /* JKImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10872A9C1E5E7C4F005A8849 /* JKImageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,9 @@
 		107816801E4D9BB20045CBB9 /* JKImageManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKImageManagement.m; path = image/JKImageManagement.m; sourceTree = "<group>"; };
 		107816821E4DA27A0045CBB9 /* JKPhotoImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPhotoImageCell.h; sourceTree = "<group>"; };
 		107816831E4DA27A0045CBB9 /* JKPhotoImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPhotoImageCell.m; sourceTree = "<group>"; };
+		10872A9A1E5E7C4F005A8849 /* JKImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageCell.h; sourceTree = "<group>"; };
+		10872A9B1E5E7C4F005A8849 /* JKImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageCell.m; sourceTree = "<group>"; };
+		10872A9C1E5E7C4F005A8849 /* JKImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JKImageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +125,9 @@
 				107816401E4D49420045CBB9 /* AppDelegate.m */,
 				107816421E4D49420045CBB9 /* ViewController.h */,
 				107816431E4D49420045CBB9 /* ViewController.m */,
+				10872A9A1E5E7C4F005A8849 /* JKImageCell.h */,
+				10872A9B1E5E7C4F005A8849 /* JKImageCell.m */,
+				10872A9C1E5E7C4F005A8849 /* JKImageCell.xib */,
 				107816451E4D49420045CBB9 /* Main.storyboard */,
 				107816481E4D49420045CBB9 /* Assets.xcassets */,
 				1078164A1E4D49420045CBB9 /* LaunchScreen.storyboard */,
@@ -261,6 +269,7 @@
 				1078166A1E4D58850045CBB9 /* MMVideoPreviewPlay@2x.png in Resources */,
 				107816731E4D58850045CBB9 /* photo_sel_previewVc@2x.png in Resources */,
 				104EC42B1E587F84003A1940 /* imageDownloadFail.png in Resources */,
+				10872A9E1E5E7C4F005A8849 /* JKImageCell.xib in Resources */,
 				107816751E4D58850045CBB9 /* preview_original_def@2x.png in Resources */,
 				107816741E4D58850045CBB9 /* preview_number_icon@2x.png in Resources */,
 			);
@@ -280,6 +289,7 @@
 				107816841E4DA27A0045CBB9 /* JKPhotoImageCell.m in Sources */,
 				107816811E4D9BB20045CBB9 /* JKImageManagement.m in Sources */,
 				107816591E4D558C0045CBB9 /* JKImageListController.m in Sources */,
+				10872A9D1E5E7C4F005A8849 /* JKImageCell.m in Sources */,
 				107816411E4D49420045CBB9 /* AppDelegate.m in Sources */,
 				107816561E4D4F110045CBB9 /* JKImageCollectionController.m in Sources */,
 				1078163E1E4D49420045CBB9 /* main.m in Sources */,

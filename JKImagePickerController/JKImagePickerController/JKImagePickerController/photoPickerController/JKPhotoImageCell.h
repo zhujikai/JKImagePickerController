@@ -22,13 +22,14 @@
  */
 @property (assign, nonatomic) BOOL isMultiple;
 
-@property (assign, nonatomic) BOOL isLayout;
+
+@property (strong, nonatomic) PHAsset *asset;
+
+
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UIImageView *videoImageView;
 @property (strong, nonatomic) UILabel *videoTimeLab;
 @property (strong, nonatomic) UIButton *selectBtn;
-
-@property (strong, nonatomic) PHAsset *asset;
 
 @end

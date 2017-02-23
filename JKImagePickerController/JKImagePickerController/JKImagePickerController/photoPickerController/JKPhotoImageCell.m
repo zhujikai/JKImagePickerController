@@ -10,30 +10,31 @@
 
 @implementation JKPhotoImageCell
 
-- (void)layoutSubviews {
-    [self configCell];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self configCell];
+    }
+    return self;
 }
 
 
 - (void)configCell {
-    if (!self.isLayout) {
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CELL_WIDTH, CELL_WIDTH)];
-        self.imageView.tag = 1;
-        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.imageView.clipsToBounds = YES;
-        [self addSubview:_imageView];
-        self.isLayout = YES;
-        
-        if (self.videoImageView) {
-            [self addSubview:self.videoImageView];
-        }
-        if (self.videoTimeLab) {
-            [self addSubview:self.videoTimeLab];
-        }
-        if (self.isMultiple) {
-            [self addSubview:self.selectBtn];
-        }
+   
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CELL_WIDTH, CELL_WIDTH)];
+    self.imageView.tag = 1;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
+    [self addSubview:_imageView];
+
+    
+    if (self.videoImageView) {
+        [self addSubview:self.videoImageView];
     }
+    if (self.videoTimeLab) {
+        [self addSubview:self.videoTimeLab];
+    }
+    [self addSubview:self.selectBtn];
 }
 
 - (void)configSubViewWithMediaType:(PHAssetMediaType)mediaType {
@@ -49,7 +50,12 @@
         {
             self.videoTimeLab.hidden = YES;
             self.videoImageView.hidden = YES;
-            self.selectBtn.hidden = NO;
+            if (self.isMultiple) {
+                self.selectBtn.hidden = NO;
+            } else {
+                self.selectBtn.hidden = YES;
+            }
+            
         }
             break;
             
@@ -130,6 +136,7 @@
                              self.imageView.image = result;
                          }];
 }
+
 
 - (void)dealloc {
     self.imageView.image = nil;

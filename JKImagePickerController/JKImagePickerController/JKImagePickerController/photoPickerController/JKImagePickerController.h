@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
 @property (assign, nonatomic) int selectMaxCount;
 
 /**
- 对图片进行剪切的类型（默认不剪切）
+ 对图片进行剪切的类型（默认不剪切,只在选择单张图片时生效）
  */
 @property (assign, nonatomic) cutImageType cutType;
 

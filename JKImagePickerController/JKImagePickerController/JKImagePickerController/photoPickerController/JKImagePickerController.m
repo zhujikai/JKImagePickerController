@@ -24,11 +24,14 @@
 - (void)configPush {
     JKImageListController *imageList = [[JKImageListController alloc] init];
     imageList.maxSelectCount = self.selectMaxCount?self.selectMaxCount:1;
+    imageList.cutType = self.cutType;
     imageList.returnSelectImageAsset = ^(NSArray<PHAsset *>* assetArr) {
         NSMutableArray *imageArr = [NSMutableArray array];
         [assetArr enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [JKImageManagement getPhotoWithAsset:obj targetSize:self.imageMaxSize?CGSizeMake(self.imageMaxSize, self.imageMaxSize):CGSizeMake(600, 600) resultHandler:^(UIImage *result, NSDictionary *info) {
-                [imageArr addObject:result];
+                if (self.imageMaxSize?(result.size.width >= self.imageMaxSize):(result.size.width >= 600)) {
+                    [imageArr addObject:result];
+                }
                 if (imageArr.count == assetArr.count) {
                     if (_JKDelegate && [_JKDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:)]) {
                         [_JKDelegate imagePickerController:self didFinishPickingPhotos:imageArr sourceAssets:assetArr isSelectOriginalPhoto:NO];

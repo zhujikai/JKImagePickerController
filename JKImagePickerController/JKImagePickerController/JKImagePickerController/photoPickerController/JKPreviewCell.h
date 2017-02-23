@@ -26,11 +26,18 @@
  */
 @property (assign, nonatomic) BOOL isMultiple;
 
+/**
+ 对图片进行剪切的类型（默认不剪切）
+ */
+@property (assign, nonatomic) NSInteger cutType;
+
 @property (strong, nonatomic) UIScrollView *backScrollView;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) JKCutImageScaleView *scaleView;
 
 @property (strong, nonatomic) PHAsset *asset;
+
+@property (strong, nonatomic) UIImage *image;
 
 - (CGRect)selectCutImageFinish;
 
