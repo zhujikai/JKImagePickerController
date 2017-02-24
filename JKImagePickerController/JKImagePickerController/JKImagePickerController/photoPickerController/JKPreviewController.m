@@ -147,14 +147,17 @@
     //点击事件
     if (!cell.returnTap) {
         cell.returnTap = ^() {
-            if (self.maxSelectCount > 1) {
-                if (self.navigationController.navigationBar.hidden) {
-                    self.navigationController.navigationBar.hidden = NO;
-                } else {
-                    self.navigationController.navigationBar.hidden = YES;
+            if (self.images.count) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else {
+                if (self.maxSelectCount > 1) {
+                    if (self.navigationController.navigationBar.hidden) {
+                        self.navigationController.navigationBar.hidden = NO;
+                    } else {
+                        self.navigationController.navigationBar.hidden = YES;
+                    }
                 }
             }
-            
         };
     }
     
