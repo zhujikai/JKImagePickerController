@@ -41,11 +41,24 @@
         }];
     };
     imageList.returnSelectImage = ^(PHAsset *asset,CGRect rect) {
-        [JKImageManagement getPhotoWithAsset:asset targetSize:CGSizeMake(600, 600) cutRect:rect resultHandler:^(UIImage *result, NSDictionary *info) {
-            if (_JKDelegate && [_JKDelegate respondsToSelector:@selector(imagePickerController:didFinishCutImage:)]) {
-                [_JKDelegate imagePickerController:self didFinishCutImage:result];
-            }
-        }];
+        if (rect.size.height == 0) {
+            NSMutableArray *imageArr = [NSMutableArray array];
+            [JKImageManagement getPhotoWithAsset:asset targetSize:self.imageMaxSize?CGSizeMake(self.imageMaxSize, self.imageMaxSize):CGSizeMake(600, 600) resultHandler:^(UIImage *result, NSDictionary *info) {
+                if (self.imageMaxSize?(result.size.width >= self.imageMaxSize):(result.size.width >= 600)) {
+                    [imageArr addObject:result];
+                }
+                
+                if (_JKDelegate && [_JKDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:)]) {
+                    [_JKDelegate imagePickerController:self didFinishPickingPhotos:imageArr sourceAssets:@[asset] isSelectOriginalPhoto:NO];
+                }
+            }];
+        } else {
+            [JKImageManagement getPhotoWithAsset:asset targetSize:self.imageMaxSize?CGSizeMake(self.imageMaxSize, self.imageMaxSize):CGSizeMake(400, 400) cutRect:rect resultHandler:^(UIImage *result, NSDictionary *info) {
+                if (_JKDelegate && [_JKDelegate respondsToSelector:@selector(imagePickerController:didFinishCutImage:cutType:)]) {
+                    [_JKDelegate imagePickerController:self didFinishCutImage:result cutType:self.cutType];
+                }
+            }];
+        }
     };
     [self pushViewController:imageList animated:NO];
 }

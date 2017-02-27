@@ -45,7 +45,7 @@
 }
 
 
-- (void)imagePickerController:(JKImagePickerController *)picker didFinishCutImage:(UIImage *)image {
+- (void)imagePickerController:(JKImagePickerController *)picker didFinishCutImage:(UIImage *)image cutType:(cutImageType)cutType {
     self.imageView.image = image;
 }
 

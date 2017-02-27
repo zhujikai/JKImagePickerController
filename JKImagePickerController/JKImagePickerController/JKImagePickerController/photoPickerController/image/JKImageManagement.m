@@ -101,12 +101,12 @@
                            contentMode:PHImageContentModeAspectFit
                                options:options
                          resultHandler:^(UIImage *result, NSDictionary *info) {
-                             
                              // 得到一张 UIImage，展示到界面上
-                             if (resultHandler) {
-                                 resultHandler(result,info);
+                             if (![info[@"PHImageResultIsDegradedKey"] boolValue]) {
+                                 if (resultHandler) {
+                                     resultHandler(result,info);
+                                 }
                              }
-                             
                          }];
 }
 

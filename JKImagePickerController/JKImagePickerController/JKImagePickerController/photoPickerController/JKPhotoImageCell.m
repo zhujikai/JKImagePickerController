@@ -128,13 +128,16 @@
         self.videoTimeLab.text = [NSString stringWithFormat:@"%02d:%02d",(int)asset.duration / 60,(int)(round((asset.duration * 10) / 10) ) % 60];
     }
     PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
+    
     [imageManager requestImageForAsset:asset
                             targetSize:CGSizeMake(CELL_WIDTH * 1.2, CELL_WIDTH * 1.2)
                            contentMode:PHImageContentModeAspectFill
                                options:nil
                          resultHandler:^(UIImage *result, NSDictionary *info) {
                              // 得到一张 UIImage，展示到界面上
-                             self.imageView.image = result;
+                             if (result) {
+                                 self.imageView.image = result;
+                             }
                          }];
 }
 
