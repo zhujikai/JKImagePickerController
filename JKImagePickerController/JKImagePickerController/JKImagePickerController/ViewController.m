@@ -29,6 +29,7 @@
 - (IBAction)touchSelectOneImage:(id)sender {
     JKImagePickerController *picker = [[JKImagePickerController alloc] init];
     picker.selectMaxCount = 1;
+    picker.isVideo = YES;
     picker.JKDelegate = self;
     picker.cutType = cutImageSquare;
     [self presentViewController:picker animated:YES completion:^{
@@ -37,7 +38,7 @@
 }
 - (IBAction)touchSelectManyimage:(id)sender {
     JKImagePickerController *picker = [[JKImagePickerController alloc] init];
-    picker.selectMaxCount = 9;
+    picker.selectMaxCount = 10;
     picker.JKDelegate = self;
     [self presentViewController:picker animated:YES completion:^{
         
@@ -52,6 +53,10 @@
 - (void)imagePickerController:(JKImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto {
     self.imageArr = photos;
     [self.imageCollectionView reloadData];
+}
+
+- (void)imagePickerController:(JKImagePickerController *)picker didFinishPickingVideoUrl:(NSURL *)videoUrl {
+    
 }
 
 

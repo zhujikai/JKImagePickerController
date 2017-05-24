@@ -19,6 +19,11 @@ typedef enum : NSUInteger {
 @property (assign, nonatomic) id<JKImagePickerControllerDelegate> JKDelegate;
 
 /**
+ 是否选择视频
+ */
+@property (assign, nonatomic) BOOL isVideo;
+
+/**
  所需要图片的最大宽高(返回的图片会稍微大于此size),如果不填写这一个参数，则选择的图片宽高是600+（剪裁的图片是400+）
  */
 @property (assign, nonatomic) int imageMaxSize;
@@ -58,5 +63,17 @@ typedef enum : NSUInteger {
  */
 - (void)imagePickerController:(JKImagePickerController *)picker didFinishCutImage:(UIImage *)image cutType:(cutImageType)cutType;
 
+/**
+ 选择视频完成的回调
+
+ @param picker   控制器
+ @param videoUrl 视频URL
+ */
+- (void)imagePickerController:(JKImagePickerController *)picker didFinishPickingVideoUrl:(NSURL *)videoUrl;
+
+/**
+ 关闭图片选择器
+ */
+- (void)imagePickerControllerDismiss;
 
 @end

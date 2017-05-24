@@ -29,6 +29,11 @@
 @property (strong, nonatomic) NSArray <UIImage *>*images;
 
 /**
+ URL数组
+ */
+@property (strong, nonatomic) NSArray <NSString *>*urls;
+
+/**
  相册照片集合
  */
 @property (strong, nonatomic) PHFetchResult *result;

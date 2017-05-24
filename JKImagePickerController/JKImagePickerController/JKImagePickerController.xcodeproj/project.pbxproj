@@ -10,7 +10,8 @@
 		1036029C1E51BA43009422B9 /* JKPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1036029B1E51BA43009422B9 /* JKPreviewController.m */; };
 		1036029F1E51BD6C009422B9 /* JKPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1036029E1E51BD6C009422B9 /* JKPreviewCell.m */; };
 		104EC42B1E587F84003A1940 /* imageDownloadFail.png in Resources */ = {isa = PBXBuildFile; fileRef = 104EC42A1E587F84003A1940 /* imageDownloadFail.png */; };
-		104EC42E1E5ADC59003A1940 /* JKCutImageScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 104EC42D1E5ADC59003A1940 /* JKCutImageScaleView.m */; };
+		105C9B8B1E77D6DE003FE047 /* JKImageManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 105C9B871E77D6DE003FE047 /* JKImageManagement.m */; };
+		105C9B8C1E77D6DE003FE047 /* JKCutImageScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105C9B8A1E77D6DE003FE047 /* JKCutImageScaleView.m */; };
 		1078163E1E4D49420045CBB9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1078163D1E4D49420045CBB9 /* main.m */; };
 		107816411E4D49420045CBB9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816401E4D49420045CBB9 /* AppDelegate.m */; };
 		107816441E4D49420045CBB9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816431E4D49420045CBB9 /* ViewController.m */; };
@@ -20,25 +21,18 @@
 		107816561E4D4F110045CBB9 /* JKImageCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816551E4D4F110045CBB9 /* JKImageCollectionController.m */; };
 		107816591E4D558C0045CBB9 /* JKImageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816581E4D558C0045CBB9 /* JKImageListController.m */; };
 		1078166A1E4D58850045CBB9 /* MMVideoPreviewPlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078165B1E4D58850045CBB9 /* MMVideoPreviewPlay@2x.png */; };
-		1078166B1E4D58850045CBB9 /* MMVideoPreviewPlayHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078165C1E4D58850045CBB9 /* MMVideoPreviewPlayHL@2x.png */; };
 		1078166C1E4D58850045CBB9 /* navi_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078165D1E4D58850045CBB9 /* navi_back@2x.png */; };
-		1078166D1E4D58850045CBB9 /* photo_def_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078165E1E4D58850045CBB9 /* photo_def_photoPickerVc@2x.png */; };
 		1078166E1E4D58850045CBB9 /* photo_def_previewVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1078165F1E4D58850045CBB9 /* photo_def_previewVc@2x.png */; };
-		1078166F1E4D58850045CBB9 /* photo_number_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816601E4D58850045CBB9 /* photo_number_icon@2x.png */; };
-		107816701E4D58850045CBB9 /* photo_original_def@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816611E4D58850045CBB9 /* photo_original_def@2x.png */; };
-		107816711E4D58850045CBB9 /* photo_original_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816621E4D58850045CBB9 /* photo_original_sel@2x.png */; };
 		107816721E4D58850045CBB9 /* photo_sel_photoPickerVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816631E4D58850045CBB9 /* photo_sel_photoPickerVc@2x.png */; };
-		107816731E4D58850045CBB9 /* photo_sel_previewVc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816641E4D58850045CBB9 /* photo_sel_previewVc@2x.png */; };
 		107816741E4D58850045CBB9 /* preview_number_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816651E4D58850045CBB9 /* preview_number_icon@2x.png */; };
-		107816751E4D58850045CBB9 /* preview_original_def@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816661E4D58850045CBB9 /* preview_original_def@2x.png */; };
-		107816761E4D58850045CBB9 /* TableViewArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816671E4D58850045CBB9 /* TableViewArrow@2x.png */; };
 		107816781E4D58850045CBB9 /* VideoSendIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 107816691E4D58850045CBB9 /* VideoSendIcon@2x.png */; };
 		1078167B1E4D62030045CBB9 /* JKImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1078167A1E4D62030045CBB9 /* JKImagePickerController.m */; };
 		1078167E1E4D6E7B0045CBB9 /* JKImageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1078167D1E4D6E7B0045CBB9 /* JKImageListCell.m */; };
-		107816811E4D9BB20045CBB9 /* JKImageManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816801E4D9BB20045CBB9 /* JKImageManagement.m */; };
 		107816841E4DA27A0045CBB9 /* JKPhotoImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 107816831E4DA27A0045CBB9 /* JKPhotoImageCell.m */; };
 		10872A9D1E5E7C4F005A8849 /* JKImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10872A9B1E5E7C4F005A8849 /* JKImageCell.m */; };
 		10872A9E1E5E7C4F005A8849 /* JKImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10872A9C1E5E7C4F005A8849 /* JKImageCell.xib */; };
+		10ABBD8C1E72349B00916E22 /* JKVideoCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10ABBD8B1E72349B00916E22 /* JKVideoCollectionController.m */; };
+		10ABBD8F1E723B0400916E22 /* JKPreviewVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10ABBD8E1E723B0400916E22 /* JKPreviewVideoController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +41,10 @@
 		1036029D1E51BD6C009422B9 /* JKPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPreviewCell.h; sourceTree = "<group>"; };
 		1036029E1E51BD6C009422B9 /* JKPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPreviewCell.m; sourceTree = "<group>"; };
 		104EC42A1E587F84003A1940 /* imageDownloadFail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageDownloadFail.png; sourceTree = "<group>"; };
-		104EC42C1E5ADC59003A1940 /* JKCutImageScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKCutImageScaleView.h; path = image/JKCutImageScaleView.h; sourceTree = "<group>"; };
-		104EC42D1E5ADC59003A1940 /* JKCutImageScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKCutImageScaleView.m; path = image/JKCutImageScaleView.m; sourceTree = "<group>"; };
+		105C9B871E77D6DE003FE047 /* JKImageManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageManagement.m; sourceTree = "<group>"; };
+		105C9B881E77D6DE003FE047 /* JKImageManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageManagement.h; sourceTree = "<group>"; };
+		105C9B891E77D6DE003FE047 /* JKCutImageScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCutImageScaleView.h; sourceTree = "<group>"; };
+		105C9B8A1E77D6DE003FE047 /* JKCutImageScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCutImageScaleView.m; sourceTree = "<group>"; };
 		107816391E4D49420045CBB9 /* JKImagePickerController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKImagePickerController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1078163D1E4D49420045CBB9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1078163F1E4D49420045CBB9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,30 +60,24 @@
 		107816571E4D558C0045CBB9 /* JKImageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageListController.h; sourceTree = "<group>"; };
 		107816581E4D558C0045CBB9 /* JKImageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageListController.m; sourceTree = "<group>"; };
 		1078165B1E4D58850045CBB9 /* MMVideoPreviewPlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMVideoPreviewPlay@2x.png"; sourceTree = "<group>"; };
-		1078165C1E4D58850045CBB9 /* MMVideoPreviewPlayHL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MMVideoPreviewPlayHL@2x.png"; sourceTree = "<group>"; };
 		1078165D1E4D58850045CBB9 /* navi_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_back@2x.png"; sourceTree = "<group>"; };
-		1078165E1E4D58850045CBB9 /* photo_def_photoPickerVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_def_photoPickerVc@2x.png"; sourceTree = "<group>"; };
 		1078165F1E4D58850045CBB9 /* photo_def_previewVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_def_previewVc@2x.png"; sourceTree = "<group>"; };
-		107816601E4D58850045CBB9 /* photo_number_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_number_icon@2x.png"; sourceTree = "<group>"; };
-		107816611E4D58850045CBB9 /* photo_original_def@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_original_def@2x.png"; sourceTree = "<group>"; };
-		107816621E4D58850045CBB9 /* photo_original_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_original_sel@2x.png"; sourceTree = "<group>"; };
 		107816631E4D58850045CBB9 /* photo_sel_photoPickerVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_sel_photoPickerVc@2x.png"; sourceTree = "<group>"; };
-		107816641E4D58850045CBB9 /* photo_sel_previewVc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_sel_previewVc@2x.png"; sourceTree = "<group>"; };
 		107816651E4D58850045CBB9 /* preview_number_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_number_icon@2x.png"; sourceTree = "<group>"; };
-		107816661E4D58850045CBB9 /* preview_original_def@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_original_def@2x.png"; sourceTree = "<group>"; };
-		107816671E4D58850045CBB9 /* TableViewArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableViewArrow@2x.png"; sourceTree = "<group>"; };
 		107816691E4D58850045CBB9 /* VideoSendIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VideoSendIcon@2x.png"; sourceTree = "<group>"; };
 		107816791E4D62030045CBB9 /* JKImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImagePickerController.h; sourceTree = "<group>"; };
 		1078167A1E4D62030045CBB9 /* JKImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImagePickerController.m; sourceTree = "<group>"; };
 		1078167C1E4D6E7B0045CBB9 /* JKImageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKImageListCell.h; path = JKImagePickerController/photoPickerController/JKImageListCell.h; sourceTree = SOURCE_ROOT; };
 		1078167D1E4D6E7B0045CBB9 /* JKImageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKImageListCell.m; path = JKImagePickerController/photoPickerController/JKImageListCell.m; sourceTree = SOURCE_ROOT; };
-		1078167F1E4D9BB20045CBB9 /* JKImageManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKImageManagement.h; path = image/JKImageManagement.h; sourceTree = "<group>"; };
-		107816801E4D9BB20045CBB9 /* JKImageManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKImageManagement.m; path = image/JKImageManagement.m; sourceTree = "<group>"; };
 		107816821E4DA27A0045CBB9 /* JKPhotoImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPhotoImageCell.h; sourceTree = "<group>"; };
 		107816831E4DA27A0045CBB9 /* JKPhotoImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPhotoImageCell.m; sourceTree = "<group>"; };
 		10872A9A1E5E7C4F005A8849 /* JKImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageCell.h; sourceTree = "<group>"; };
 		10872A9B1E5E7C4F005A8849 /* JKImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageCell.m; sourceTree = "<group>"; };
 		10872A9C1E5E7C4F005A8849 /* JKImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JKImageCell.xib; sourceTree = "<group>"; };
+		10ABBD8A1E72349B00916E22 /* JKVideoCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVideoCollectionController.h; sourceTree = "<group>"; };
+		10ABBD8B1E72349B00916E22 /* JKVideoCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVideoCollectionController.m; sourceTree = "<group>"; };
+		10ABBD8D1E723B0400916E22 /* JKPreviewVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPreviewVideoController.h; sourceTree = "<group>"; };
+		10ABBD8E1E723B0400916E22 /* JKPreviewVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPreviewVideoController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +139,10 @@
 			isa = PBXGroup;
 			children = (
 				1078165A1E4D58740045CBB9 /* image */,
+				105C9B871E77D6DE003FE047 /* JKImageManagement.m */,
+				105C9B881E77D6DE003FE047 /* JKImageManagement.h */,
+				105C9B891E77D6DE003FE047 /* JKCutImageScaleView.h */,
+				105C9B8A1E77D6DE003FE047 /* JKCutImageScaleView.m */,
 				107816541E4D4F110045CBB9 /* JKImageCollectionController.h */,
 				107816551E4D4F110045CBB9 /* JKImageCollectionController.m */,
 				107816571E4D558C0045CBB9 /* JKImageListController.h */,
@@ -157,16 +151,16 @@
 				1078167A1E4D62030045CBB9 /* JKImagePickerController.m */,
 				1078167C1E4D6E7B0045CBB9 /* JKImageListCell.h */,
 				1078167D1E4D6E7B0045CBB9 /* JKImageListCell.m */,
-				1078167F1E4D9BB20045CBB9 /* JKImageManagement.h */,
-				107816801E4D9BB20045CBB9 /* JKImageManagement.m */,
 				107816821E4DA27A0045CBB9 /* JKPhotoImageCell.h */,
 				107816831E4DA27A0045CBB9 /* JKPhotoImageCell.m */,
 				1036029A1E51BA43009422B9 /* JKPreviewController.h */,
 				1036029B1E51BA43009422B9 /* JKPreviewController.m */,
 				1036029D1E51BD6C009422B9 /* JKPreviewCell.h */,
 				1036029E1E51BD6C009422B9 /* JKPreviewCell.m */,
-				104EC42C1E5ADC59003A1940 /* JKCutImageScaleView.h */,
-				104EC42D1E5ADC59003A1940 /* JKCutImageScaleView.m */,
+				10ABBD8A1E72349B00916E22 /* JKVideoCollectionController.h */,
+				10ABBD8B1E72349B00916E22 /* JKVideoCollectionController.m */,
+				10ABBD8D1E723B0400916E22 /* JKPreviewVideoController.h */,
+				10ABBD8E1E723B0400916E22 /* JKPreviewVideoController.m */,
 			);
 			path = photoPickerController;
 			sourceTree = "<group>";
@@ -175,19 +169,11 @@
 			isa = PBXGroup;
 			children = (
 				1078165B1E4D58850045CBB9 /* MMVideoPreviewPlay@2x.png */,
-				1078165C1E4D58850045CBB9 /* MMVideoPreviewPlayHL@2x.png */,
 				1078165D1E4D58850045CBB9 /* navi_back@2x.png */,
-				1078165E1E4D58850045CBB9 /* photo_def_photoPickerVc@2x.png */,
 				1078165F1E4D58850045CBB9 /* photo_def_previewVc@2x.png */,
-				107816601E4D58850045CBB9 /* photo_number_icon@2x.png */,
-				107816611E4D58850045CBB9 /* photo_original_def@2x.png */,
-				107816621E4D58850045CBB9 /* photo_original_sel@2x.png */,
 				107816631E4D58850045CBB9 /* photo_sel_photoPickerVc@2x.png */,
-				107816641E4D58850045CBB9 /* photo_sel_previewVc@2x.png */,
 				104EC42A1E587F84003A1940 /* imageDownloadFail.png */,
 				107816651E4D58850045CBB9 /* preview_number_icon@2x.png */,
-				107816661E4D58850045CBB9 /* preview_original_def@2x.png */,
-				107816671E4D58850045CBB9 /* TableViewArrow@2x.png */,
 				107816691E4D58850045CBB9 /* VideoSendIcon@2x.png */,
 			);
 			path = image;
@@ -253,13 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				107816761E4D58850045CBB9 /* TableViewArrow@2x.png in Resources */,
-				107816701E4D58850045CBB9 /* photo_original_def@2x.png in Resources */,
-				107816711E4D58850045CBB9 /* photo_original_sel@2x.png in Resources */,
-				1078166B1E4D58850045CBB9 /* MMVideoPreviewPlayHL@2x.png in Resources */,
-				1078166F1E4D58850045CBB9 /* photo_number_icon@2x.png in Resources */,
 				1078166E1E4D58850045CBB9 /* photo_def_previewVc@2x.png in Resources */,
-				1078166D1E4D58850045CBB9 /* photo_def_photoPickerVc@2x.png in Resources */,
 				1078164C1E4D49420045CBB9 /* LaunchScreen.storyboard in Resources */,
 				107816491E4D49420045CBB9 /* Assets.xcassets in Resources */,
 				107816721E4D58850045CBB9 /* photo_sel_photoPickerVc@2x.png in Resources */,
@@ -267,10 +247,8 @@
 				107816471E4D49420045CBB9 /* Main.storyboard in Resources */,
 				107816781E4D58850045CBB9 /* VideoSendIcon@2x.png in Resources */,
 				1078166A1E4D58850045CBB9 /* MMVideoPreviewPlay@2x.png in Resources */,
-				107816731E4D58850045CBB9 /* photo_sel_previewVc@2x.png in Resources */,
 				104EC42B1E587F84003A1940 /* imageDownloadFail.png in Resources */,
 				10872A9E1E5E7C4F005A8849 /* JKImageCell.xib in Resources */,
-				107816751E4D58850045CBB9 /* preview_original_def@2x.png in Resources */,
 				107816741E4D58850045CBB9 /* preview_number_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,16 +263,18 @@
 				1036029F1E51BD6C009422B9 /* JKPreviewCell.m in Sources */,
 				1078167B1E4D62030045CBB9 /* JKImagePickerController.m in Sources */,
 				1078167E1E4D6E7B0045CBB9 /* JKImageListCell.m in Sources */,
+				105C9B8B1E77D6DE003FE047 /* JKImageManagement.m in Sources */,
+				10ABBD8F1E723B0400916E22 /* JKPreviewVideoController.m in Sources */,
 				107816441E4D49420045CBB9 /* ViewController.m in Sources */,
 				107816841E4DA27A0045CBB9 /* JKPhotoImageCell.m in Sources */,
-				107816811E4D9BB20045CBB9 /* JKImageManagement.m in Sources */,
 				107816591E4D558C0045CBB9 /* JKImageListController.m in Sources */,
 				10872A9D1E5E7C4F005A8849 /* JKImageCell.m in Sources */,
+				105C9B8C1E77D6DE003FE047 /* JKCutImageScaleView.m in Sources */,
 				107816411E4D49420045CBB9 /* AppDelegate.m in Sources */,
 				107816561E4D4F110045CBB9 /* JKImageCollectionController.m in Sources */,
+				10ABBD8C1E72349B00916E22 /* JKVideoCollectionController.m in Sources */,
 				1078163E1E4D49420045CBB9 /* main.m in Sources */,
 				1036029C1E51BA43009422B9 /* JKPreviewController.m in Sources */,
-				104EC42E1E5ADC59003A1940 /* JKCutImageScaleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

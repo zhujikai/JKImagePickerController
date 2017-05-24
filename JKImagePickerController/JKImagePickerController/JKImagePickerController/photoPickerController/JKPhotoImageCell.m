@@ -7,6 +7,7 @@
 //
 
 #import "JKPhotoImageCell.h"
+#import "JKImageManagement.h"
 
 @implementation JKPhotoImageCell
 
@@ -127,10 +128,11 @@
         
         self.videoTimeLab.text = [NSString stringWithFormat:@"%02d:%02d",(int)asset.duration / 60,(int)(round((asset.duration * 10) / 10) ) % 60];
     }
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    
-    [imageManager requestImageForAsset:asset
-                            targetSize:CGSizeMake(CELL_WIDTH * 1.2, CELL_WIDTH * 1.2)
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+    [[JKImageManagement sharedInstance].imageManager requestImageForAsset:asset
+                            targetSize:CGSizeMake(CELL_WIDTH * 1.5, CELL_WIDTH * 1.5)
                            contentMode:PHImageContentModeAspectFill
                                options:nil
                          resultHandler:^(UIImage *result, NSDictionary *info) {

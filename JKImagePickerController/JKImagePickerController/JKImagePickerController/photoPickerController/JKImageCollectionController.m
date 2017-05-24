@@ -148,14 +148,22 @@
         [self.imageCollection reloadData];
     } else {
         if ([JKImageManagement isCanUsePhotos] == noRequest) {
-            [JKImageManagement UsePhotos:^(BOOL status) {
+            [JKImageManagement usePhotos:^(BOOL status) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (status) {
                         self.result = [JKImageManagement getAllPhoto];
-                        if (self.result.count) {
-                            [self.imageCollection scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.result.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
-                        }
                         [self.imageCollection reloadData];
+                        if (self.result.count) {
+                            @try {
+                                 [self.imageCollection scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.result.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+                            } @catch (NSException *exception) {
+                                
+                            } @finally {
+                                
+                            }
+                           
+                        }
+                        
                     } else {
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你拒绝了应用使用相册的权限，请先开启相册权限" message:nil preferredStyle:UIAlertControllerStyleAlert];
                         

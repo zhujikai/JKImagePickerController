@@ -10,6 +10,22 @@
 
 @implementation JKImageManagement
 
++ (instancetype)sharedInstance {
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (PHCachingImageManager *)imageManager {
+    if (!_imageManager) {
+        _imageManager = [[PHCachingImageManager alloc] init];
+    }
+    return _imageManager;
+}
+
 + (NSArray *)getAlbums {
     // 列出所有相册智能相册
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
@@ -20,8 +36,10 @@
             PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
 //            // 从每一个智能相册中获取到的 PHFetchResult 中包含的才是真正的资源（PHAsset）
 //            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-            
-            [array addObject:assetCollection];
+            int imageCount = (int)[JKImageManagement getFetchResultWithAssetCollection:assetCollection].count;
+            if (imageCount > 0) {
+                [array addObject:assetCollection];
+            }
             
         } else {
             NSAssert(NO, @"Fetch collection not PHCollection: %@", collection);
@@ -36,13 +54,16 @@
             PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
 //            // 从每一个智能相册中获取到的 PHFetchResult 中包含的才是真正的资源（PHAsset）
 //            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-            
-            [array addObject:assetCollection];
+            int imageCount = (int)[JKImageManagement getFetchResultWithAssetCollection:assetCollection].count;
+            if (imageCount > 0) {
+                [array addObject:assetCollection];
+            }
             
         } else {
             NSAssert(NO, @"Fetch collection not PHCollection: %@", collection);
         }
     }];
+    
     return array;
 }
 
@@ -55,9 +76,24 @@
 + (PHFetchResult *)getAllPhoto {
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     if (smartAlbums.count) {
-        PHCollection *collection = smartAlbums[0];
-        if ([collection isKindOfClass:[PHAssetCollection class]]) {
-            PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
+        PHCollection *collection;
+        __block typeof(collection) blockColl = collection;
+        [smartAlbums enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            PHCollection *collectionone = obj;
+            if ([collectionone isKindOfClass:[PHAssetCollection class]]) {
+                PHAssetCollection *assetCollection = (PHAssetCollection *)collectionone;
+                // 从每一个智能相册中获取到的 PHFetchResult 中包含的才是真正的资源（PHAsset）
+                if (assetCollection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+                    blockColl = collectionone;
+                    *stop = YES;
+                }
+            }
+        }];
+        if (!blockColl) {
+            blockColl = smartAlbums[0];
+        }
+        if ([blockColl isKindOfClass:[PHAssetCollection class]]) {
+            PHAssetCollection *assetCollection = (PHAssetCollection *)blockColl;
             // 从每一个智能相册中获取到的 PHFetchResult 中包含的才是真正的资源（PHAsset）
             PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
             return fetchResult;
@@ -69,22 +105,44 @@
     return nil;
 }
 
++ (PHFetchResult *)getAllVideo {
+    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    if (smartAlbums.count) {
+        PHFetchResult *fetchResult;
+        __block typeof(fetchResult) blockFetchResult = fetchResult;
+        [smartAlbums enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            PHCollection *collection = obj;
+            if ([collection isKindOfClass:[PHAssetCollection class]]) {
+                PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
+                // 从每一个智能相册中获取到的 PHFetchResult 中包含的才是真正的资源（PHAsset）
+                if ([assetCollection.localizedTitle isEqualToString:@"Videos"] || [assetCollection.localizedTitle isEqualToString:@"视频"]) {
+                    blockFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+                    
+                }
+                
+                
+            }
+        }];
+        return blockFetchResult;
+    }
+    return nil;
+}
+
 + (void)getPhotoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize resultHandler:(void(^)(UIImage *result, NSDictionary *info))resultHandler {
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.resizeMode = PHImageRequestOptionsResizeModeFast;
     options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
-    
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    [imageManager requestImageForAsset:asset
+    options.networkAccessAllowed = YES;
+    [[JKImageManagement sharedInstance].imageManager requestImageForAsset:asset
                             targetSize:targetSize
                            contentMode:PHImageContentModeAspectFill
                                options:options
                          resultHandler:^(UIImage *result, NSDictionary *info) {
                              // 得到一张 UIImage，展示到界面上
-                             if (resultHandler) {
-                                 resultHandler(result,info);
-                             }
+                                 if (resultHandler) {
+                                     resultHandler(result,info);
+                                 }
                          }];
 }
 
@@ -95,8 +153,7 @@
     options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
     options.normalizedCropRect = cutRect;
     
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    [imageManager requestImageForAsset:asset
+    [[JKImageManagement sharedInstance].imageManager requestImageForAsset:asset
                             targetSize:targetSize
                            contentMode:PHImageContentModeAspectFit
                                options:options
@@ -137,30 +194,34 @@
         return @"全景照片";
     } else if ([title isEqualToString:@"Bursts"]) {
         return @"连拍快照";
-    } else if ([title isEqualToString:@"Hidden"]) {
+    } else if ([title isEqualToString:@"Hidden"] || [title isEqualToString:@"最近删除"] || [title isEqualToString:@"隐藏"]) {
         return nil;
     }
+    
     return title;
 }
 
-- (void)getImageWithAssets:(NSArray <PHAsset *>*)assets maxSize:(int)maxSize completion:(void (^)(UIImage *photo,NSDictionary *info))completion {
++ (void)getImageWithAssets:(NSArray <PHAsset *>*)assets maxSize:(int)maxSize completion:(void (^)(UIImage *photo,NSDictionary *info))completion {
     NSMutableArray *imageArr = [NSMutableArray array];
     // 在资源的集合中获取第一个集合，并获取其中的图片
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    
+    options.networkAccessAllowed = YES;
     [assets enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         PHAsset *asset = obj;
-        [imageManager requestImageForAsset:asset
+        [[JKImageManagement sharedInstance].imageManager requestImageForAsset:asset
                                 targetSize:maxSize?CGSizeMake(maxSize, maxSize):PHImageManagerMaximumSize
                                contentMode:PHImageContentModeAspectFill
                                    options:options
                              resultHandler:^(UIImage *result, NSDictionary *info) {
                                  // 得到一张 UIImage，展示到界面上
-                                 
+                                 if (![info[@"PHImageResultIsDegradedKey"] boolValue]) {
+                                     if (completion) {
+                                         completion(result,info);
+                                     }
+                                 }
                              }];
     }];
 }
@@ -177,7 +238,7 @@
     return yesUse;
 }
 
-+ (void)UsePhotos:(void(^)(BOOL status))Status {
++ (void)usePhotos:(void(^)(BOOL status))Status {
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 9.0) {
         if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {

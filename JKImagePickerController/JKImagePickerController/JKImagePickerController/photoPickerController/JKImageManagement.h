@@ -10,12 +10,16 @@
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 typedef enum : NSUInteger {
-    noRequest,
+    noRequest, 
     noUse,
     yesUse,
 } albumAuthority;
 
 @interface JKImageManagement : NSObject
+
++ (instancetype)sharedInstance;
+
+@property (strong, nonatomic) PHCachingImageManager *imageManager;
 
 /**
  获取所有相册列表
@@ -41,6 +45,13 @@ typedef enum : NSUInteger {
 + (PHFetchResult *)getAllPhoto;
 
 /**
+ 获取所有的视频集合
+
+ @return 视频集合
+ */
++ (PHFetchResult *)getAllVideo;
+
+/**
  获取单张照片
 
  @param asset         <#asset description#>
@@ -58,6 +69,8 @@ typedef enum : NSUInteger {
  @param resultHandler <#resultHandler description#>
  */
 + (void)getPhotoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize cutRect:(CGRect)cutRect resultHandler:(void(^)(UIImage *result, NSDictionary *info))resultHandler;
+
++ (void)getImageWithAssets:(NSArray <PHAsset *>*)assets maxSize:(int)maxSize completion:(void (^)(UIImage *photo,NSDictionary *info))completion;
 
 /**
  将英文相册名改为中文
@@ -80,6 +93,6 @@ typedef enum : NSUInteger {
 
  @param Status <#Status description#>
  */
-+ (void)UsePhotos:(void(^)(BOOL status))Status;
++ (void)usePhotos:(void(^)(BOOL status))Status;
 
 @end

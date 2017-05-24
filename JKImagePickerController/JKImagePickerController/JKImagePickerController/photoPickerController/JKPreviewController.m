@@ -21,14 +21,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    
+    if (self.maxSelectCount != 1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self configCollection];
+}
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNav];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,9 +57,7 @@
     });
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
-    if (self.maxSelectCount > 1) {
-        
-    } else {
+    if (self.maxSelectCount == 1) {
         //当只有一张图片时的界面
         self.navigationController.navigationBar.hidden = YES;
         
@@ -79,20 +84,23 @@
  */
 - (void)configCollection {
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     UICollectionViewFlowLayout *collectionLayout = [[UICollectionViewFlowLayout alloc] init];
     collectionLayout.minimumInteritemSpacing = 0;
     collectionLayout.minimumLineSpacing = 0;
     collectionLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    self.previewCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, PHONE_WIDTH, PHONE_HEIGHT) collectionViewLayout:collectionLayout];
+    if (self.maxSelectCount == 1) {
+        self.previewCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, PHONE_WIDTH, PHONE_HEIGHT) collectionViewLayout:collectionLayout];
+    } else {
+        self.previewCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -64, PHONE_WIDTH, PHONE_HEIGHT) collectionViewLayout:collectionLayout];
+    }
     
     self.previewCollectionView.delegate = self;
     self.previewCollectionView.dataSource = self;
     self.previewCollectionView.backgroundColor = [UIColor blackColor];
     //设置当前选中的图片
-    if (self.result.count > self.selectNumber || self.assets.count > self.selectNumber || self.images.count > self.selectNumber) {
+    if (self.result.count > self.selectNumber || self.assets.count > self.selectNumber || self.images.count > self.selectNumber ||  self.urls.count > self.selectNumber) {
         [self.previewCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectNumber inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     }
     
@@ -136,8 +144,12 @@
         return self.result.count;
     } else if (self.assets) {
         return self.assets.count;
+    } else if (self.images) {
+        return self.images.count;
+    } else {
+        return self.urls.count;
     }
-    return self.images.count;
+    
 }
 
 
@@ -150,7 +162,7 @@
             if (self.images.count) {
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else {
-                if (self.maxSelectCount > 1) {
+                if (self.maxSelectCount != 1) {
                     if (self.navigationController.navigationBar.hidden) {
                         self.navigationController.navigationBar.hidden = NO;
                     } else {
@@ -173,7 +185,7 @@
     }
     
     //是否是多张图片
-    if (self.maxSelectCount > 1) {
+    if (self.maxSelectCount != 1) {
         cell.isMultiple = YES;
     } else {
         cell.isMultiple = NO;
@@ -190,9 +202,18 @@
         if (self.assets.count > indexPath.row) {
             cell.asset = self.assets[indexPath.row];
         }
-    } else {
+    } else if (self.images) {
         if (self.images.count > indexPath.row) {
             cell.image = self.images[indexPath.row];
+        }
+    } else {
+        if (self.urls.count > indexPath.row) {
+//            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.urls[indexPath.row]] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//                
+//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//                cell.image = image;
+//            }];
+            
         }
     }
     cell.clipsToBounds = YES;
@@ -201,6 +222,9 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.images) {
+        return CGSizeMake(PHONE_WIDTH, PHONE_HEIGHT);
+    }
+    if (self.urls) {
         return CGSizeMake(PHONE_WIDTH, PHONE_HEIGHT);
     }
     
@@ -225,6 +249,7 @@
     self.assets = nil;
     self.result = nil;
     self.images = nil;
+    self.urls = nil;
     self.previewCollectionView = nil;
 }
 

@@ -220,7 +220,10 @@
     //清空imageView上的图片，防止获取图片失败导致图片混乱
     self.imageView.image = nil;
     //根据PHAsset获取图片
-    [JKImageManagement getPhotoWithAsset:self.asset targetSize:CGSizeMake(800, 800) resultHandler:^(UIImage *result, NSDictionary *info) {
+    [JKImageManagement getPhotoWithAsset:self.asset targetSize:CGSizeMake(1000, 1000) resultHandler:^(UIImage *result, NSDictionary *info) {
+        if (!result) {
+            return ;
+        }
         self.imageView.image = result;
         //设置imageView的相对宽高
         if (result) {
